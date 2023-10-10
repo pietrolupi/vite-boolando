@@ -24,9 +24,9 @@ export default {
       </div>
 
       <div class="icons">
-          <a href="#">X</a>
-          <a href="#">X</a>
-          <a href="#">X</a>
+          <a href="#"><i class="fa-regular fa-user"></i></a>
+          <a href="#"><i class="fa-regular fa-heart"></i></a>
+          <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
       </div>
 
     </div>
@@ -78,6 +78,12 @@ export default {
       .icons{
         justify-content: flex-end;
         align-items: center;
+
+        a{
+          padding-left: 10px;
+          color: white;
+          font-size: 1.1rem;
+        }
       }
       
       .logo {
