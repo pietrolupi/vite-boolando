@@ -1,7 +1,21 @@
 
 <script>
+
+import card from '../data/card'
+
 export default {
-  name: 'main'
+  name: 'main',
+
+  data(){
+    return{
+      card
+    }
+  },
+  methods:{
+    getImagePath(img){
+      return new URL(`${img}`, import.meta.url).href;
+    }
+  }
 }
 </script>
 
@@ -9,25 +23,25 @@ export default {
 <template>
 
   <div class="main">
-       <div class="main-container">
+       <div v-for="(item,index) in card" :key="index" class="main-container">
           <div class="img-card">
-          <a href="#"><img src="../assets/img/1.webp" alt="" class="img-main">
-          <img src="../assets/img/1b.webp" alt="" class="img-hover">
+          <a href="#"><img :src="getImagePath(item.img)" alt="" class="img-main">
+          <img :src="getImagePath(item.imgHover)" alt="" class="img-hover">
           </a> 
 
-          <span class="discount">-50%</span>
-          <span class="ecological">Sostenibilità</span>
+          <span v-if="item.discount" class="discount">{{item.discountPerc}}</span>
+          <span v-if=" item.ecological" class="ecological">Sostenibilità</span>
           <span class="heart"> &hearts;</span>
           </div>
 
           <div class="product-description">
-            <p>Levi's</p>
-            <h3>RELAXED FIT TEE UNISEX</h3>
-            <p><span class="price">14,99 &euro;</span>
-            <span class="ex-price">29,99 &euro;</span></p>
+            <p>{{ item.brand }}</p>
+            <h3>{{ item.name }}</h3>
+            <p><span class="price">{{item.price}} &euro;</span>
+            <span v-if="item.discount" class="ex-price">{{item.exPrice}} &euro;</span></p>
           </div>
         </div>
-
+<!-- 
         <div class="main-container">
           <div class="img-card">
           <a href="#"><img src="../assets/img/2.webp" alt="" class="img-main">
@@ -114,7 +128,7 @@ export default {
             <h3>MAGLIONE - BLACK</h3>
             <p><span class="price">29,99 &euro;</span></p>
           </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
